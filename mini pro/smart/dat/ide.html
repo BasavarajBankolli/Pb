@@ -1,0 +1,13 @@
+<script>
+    document.getElementById('registerBtn').addEventListener('click', function() {
+        fetch('/run_datacollect')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Student registration initiated successfully!");
+                } else {
+                    alert("There was an error starting student registration.");
+                }
+            });
+    });
+</script>

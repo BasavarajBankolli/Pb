@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <style>
+        /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #121212;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.neon-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fc466b, #3f5efb); /* Neon gradient */
+    opacity: 0.09;  /* Lighter opacity */
+    box-shadow: 0 0 20px rgba(252, 70, 107, 0.5), 0 0 30px rgba(63, 94, 251, 0.5);  /* Light glow effect */
+}
+
+.neon-circle-1 {
+    width: 400px; /* Increased size */
+    height: 400px;
+    top: -100px;
+    left: -150px;
+}
+
+.neon-circle-2 {
+    width: 500px; /* Increased size */
+    height: 500px;
+    bottom: -150px;
+    right: -150px;
+}
+
+.neon-circle-3 {
+    width: 450px; /* Increased size */
+    height: 450px;
+    top: 0px;
+    right: 30px;
+}
+
+.signup-container {
+    background: rgba(30, 30, 30, 0.9);
+    border-radius: 10px;
+    padding: 20px 30px;
+    width: 300px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.signup-container::before,
+.signup-container::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    background: linear-gradient(135deg, #fc466b, #3f5efb);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.signup-container::before {
+    top: -120px;
+    left: -150px;
+    opacity: 0.7;
+}
+
+.signup-container::after {
+    bottom: -100px;
+    right: -150px;
+    opacity: 0.5;
+}
+
+.signup-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    color: #000;
+}
+
+.signup-button {
+    background: #6c83f7;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.signup-button:hover {
+    background: #58a881;
+}
+
+.create-account {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ccc;
+    text-decoration: none;
+}
+
+.create-account:hover {
+    color: #a29cf6;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="neon-circle neon-circle-1"></div>
+    <div class="neon-circle neon-circle-2"></div>
+    <div class="neon-circle neon-circle-3"></div>
+
+    <div class="signup-container">
+        <form class="signup-form" action="/login_verification" method="post">
+            <h2>Login
+
+            </h2>
+
+            <p>
+                    {% with err = get_flashed_messages() %}
+
+                    {% if err %}
+
+                            {% for message in err %}
+
+                                    <p style="color:red;">{{ message }}</p>
+
+                            {% endfor %}
+
+                    {% endif %}
+                 {% endwith %}
+            </p>
+
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Email Id" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="signup-button">Login</button>
+            <a href="{{ url_for('sign_up') }}" class="create-account">Create account</a>
+        </form>
+    </div>
+</body>
+</html>
